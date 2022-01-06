@@ -1,11 +1,25 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  /* waitFor, */
+  /* configure, */
+} from "@testing-library/react";
+/* import userEvent from "@testing-library/user-event"; */
 
 import App from "../App";
 import api from "../services";
 import MockAdapter from "axios-mock-adapter";
-import { LocateCepProvider } from "../providers/CepProvider";
+import Providers from "../providers";
+
+/* import axios from "axios";
+
+jest.mock("axios");
+const mockedAxios = axios; */
 
 const apiMock = new MockAdapter(api);
+
+/* configure({ asyncUtilTimeout: 5000 }); */
 
 describe("Searching Cep", () => {
   it("should be able to retrieve location", async () => {
@@ -23,10 +37,26 @@ describe("Searching Cep", () => {
       logradouro: "Rua Emílio Blum",
     });
 
+    /*    const cepLocade = {
+      bairro: "Centro",
+      cep: "88020010",
+      cidade: "Florianópolis",
+      cidade_info: { area_km2: "675,409", codigo_ibge: "4205407" },
+      estado: "SC",
+      estado_info: {
+        area_km2: "95.737,895",
+        codigo_ibge: "42",
+        nome: "Santa Catarina",
+      },
+      logradouro: "Rua Emílio Blum",
+    };
+
+    mockedAxios.get.mockResolvedValueOnce({ data: cepLocade }); */
+
     render(
-      <LocateCepProvider>
+      <Providers>
         <App />
-      </LocateCepProvider>
+      </Providers>
     );
 
     const cepField = screen.getByPlaceholderText("Insira o CEP");
@@ -57,14 +87,14 @@ describe("Searching Cep", () => {
     const numero = screen.getByText("Toda a extensão");
     const bairro = screen.getByDisplayValue("Centro");
     const cidade = screen.getByDisplayValue("Florianópolis");
-    const estado = screen.getByDisplayValue("SC");
+    const estado = screen.getByDisplayValue("SC"); */
 
-    await waitFor(() => {
-      expect(logradouro).toBeTruthy();
-      expect(numero).toBeTruthy();
-      expect(bairro).toBeTruthy();
-      expect(cidade).toBeTruthy();
-      expect(estado).toBeTruthy();
+    /* await waitFor(() => {
+      expect(screen.getByDisplayValue("Rua Emílio Blum")).toBeTruthy();
+      expect(screen.getByText("Toda a extensão")).toBeTruthy();
+      expect(screen.getByDisplayValue("Centro")).toBeTruthy();
+      expect(screen.getByDisplayValue("Florianópolis")).toBeTruthy();
+      expect(screen.getByDisplayValue("SC")).toBeTruthy();
     }); */
   });
 
