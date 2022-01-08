@@ -29,7 +29,7 @@ const Address = () => {
               )}
               <Form.Field inline>
                 <Header size="small">Complemento</Header>
-                <Input fluid placeholder="Apartamento, bloco, ..." on />
+                <Input fluid placeholder="Apartamento, bloco, ..." />
               </Form.Field>
             </Form.Field>
             <Form.Field inline>
